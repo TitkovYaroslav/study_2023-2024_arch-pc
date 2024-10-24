@@ -1,0 +1,11 @@
+
+all: report.docx report.pdf
+
+report.docx: report.md
+    pandoc "report.md" --filter pandoc-crossref --number-sections --citeproc -o "report.docx"
+
+report.pdf: report.md
+    pandoc "report.md" --filter pandoc-crossref --pdf-engine=lualatex --pdf-engine-opt=--shell-escape --citeproc --number-sections -o "report.pdf"
+
+clean:
+    rm -f *.o *.docx *.pdf
